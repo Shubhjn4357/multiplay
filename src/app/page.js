@@ -1,8 +1,8 @@
-'use client'
+
 // pages/index.js
 // import { useEffect } from 'react';
 import YouTubePlayerManager from '../../components/yotubeplayerManager';
-
+import { Analytics } from "@vercel/analytics/react"
 export default function Home() {
   // useEffect(() => {
   //   // Make a request to the API endpoint to start the cron job
@@ -14,6 +14,7 @@ export default function Home() {
 
   return (
     <div className='relative p-4 h-screen flex flex-col justify-center items-center'>    
+          <Analytics/>
           <YouTubePlayerManager />
     </div>
   );
