@@ -54,7 +54,7 @@ const YouTubePlayer = ({ videoId, onRemove, id }) => {
         player.destroy();
       }
     };
-  }, [videoId]);
+  }, [videoId,player]);
 
   return (
     <div className='relative group m-2 aspect-video w-full rounded-lg overflow-hidden'>
