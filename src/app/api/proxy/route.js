@@ -5,6 +5,7 @@ import https from 'https';
 const proxyHandler = async (req) => {
   const url = new URL(req.url);
   const targetUrl = new URL(url.pathname.replace('/api/proxy', ''), 'https://www.youtube.com');
+  // In the proxy handler, log the target URL and options
 
   const options = {
     hostname: targetUrl.hostname,
@@ -13,7 +14,8 @@ const proxyHandler = async (req) => {
     method: req.method,
     headers: req.headers,
   };
-
+  console.log('Target URL:', targetUrl.href);
+  console.log('Request Options:', options);
   return new Promise((resolve, reject) => {
     const proxyReq = https.request(options, (proxyRes) => {
       const responseHeaders = {};
@@ -47,6 +49,8 @@ const proxyHandler = async (req) => {
       proxyReq.end();
     }
   });
+
+
 };
 
 export async function GET(req) {

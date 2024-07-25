@@ -1,10 +1,12 @@
-// components/YouTubePlayer.js
 'use client'
 import { useEffect, useRef } from 'react';
 
 const YouTubePlayer = ({ videoId, onRemove, id }) => {
   const playerRef = useRef(null);
-
+  useEffect(() => {
+    console.log('Initializing YouTube player with videoId:', videoId);
+    // ... rest of the code
+  }, [videoId]);
   useEffect(() => {
     const onPlayerReady = (event) => {
       event.target.playVideo();
@@ -23,7 +25,9 @@ const YouTubePlayer = ({ videoId, onRemove, id }) => {
           onReady: onPlayerReady,
           onStateChange: onPlayerStateChange,
         },
-        host: 'https://multiplay-blue.vercel.app/api/proxy',
+        playerVars: {
+          host: 'https://multiplay-blue.vercel.app/api/proxy',
+        },
       });
     };
 
