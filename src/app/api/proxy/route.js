@@ -15,11 +15,14 @@ const proxy = createProxyMiddleware({
   },
 });
 
-export default function handler(req, res) {
-  return proxy(req, res, (result) => {
-    if (result instanceof Error) {
-      throw result;
-    }
-    return result;
+export async function GET(req) {
+  return new Promise((resolve, reject) => {
+    proxy(req, NextResponse.json, (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(NextResponse.json());
+      }
+    });
   });
 }
