@@ -12,11 +12,29 @@ const proxy = createProxyMiddleware({
 
 export async function GET(req) {
   return new Promise((resolve, reject) => {
-    proxy(req, NextResponse.json, (err) => {
+    const res = {
+      writeHead: (statusCode, headers) => {
+        const headersList = new Headers();
+        Object.entries(headers).forEach(([key, value]) => {
+          headersList.append(key, value);
+        });
+        resolve(
+          new NextResponse(null, {
+            status: statusCode,
+            headers: headersList,
+          })
+        );
+      },
+      end: (body) => {
+        resolve(
+          new NextResponse(body)
+        );
+      },
+    };
+    
+    proxy(req, res, (err) => {
       if (err) {
         reject(err);
-      } else {
-        resolve(NextResponse.json());
       }
     });
   });
