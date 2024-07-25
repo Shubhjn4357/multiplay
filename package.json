@@ -1,5 +1,5 @@
 {
-  "name": "out",
+  "name": "multiplay",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "author": "Shubham jain",
   "dependencies": {
     "@vercel/analytics": "^1.3.1",
     "axios": "^1.7.2",

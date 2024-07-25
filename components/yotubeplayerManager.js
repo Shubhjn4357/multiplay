@@ -1,6 +1,7 @@
 'use client';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import YouTubePlayer from './youtubePlayer';
+import SuspensePlayer from './suspensePlayer';
 
 
 const extractVideoId = (url) => {
@@ -12,7 +13,8 @@ const YouTubePlayerManager = () => {
   const [players, setPlayers] = useState([]);
   const [url, setUrl] = useState('');
   const [multiplyer, setMultiplyer] = useState('1');
-  
+  const randomId = () => Math.floor(Math.random() * 1000000);
+
   const removePlayer = (id) => {
     setPlayers(players.filter(player => player.id !== id));
   };
@@ -22,7 +24,7 @@ const YouTubePlayerManager = () => {
     const newPlayers = [];
     if (videoId && !isNaN(parseInt(multiplyer)) && parseInt(multiplyer) > 0) {
       for (let i = 0; i < parseInt(multiplyer); i++) {
-        newPlayers.push({ id: Date.now() + i, videoId });
+        newPlayers.push({ id: Date.now() + randomId(), videoId });
       }
       setPlayers([...players, ...newPlayers]);
     } else {
@@ -36,7 +38,7 @@ const removeAll = () => {
   };
 
   return (
-    <div className='p-4 ring ring-stone-700 rounded-md size-full overflow-y-scroll'>
+    <div className='p-4 ring ring-stone-700 rounded-md size-full scroll'>
       <div className='bg-white/10 backdrop-blur-lg rounded-md p-4 my-4 sticky top-2 inset-x-0 z-10'>
         <h1 className='text-2xl font-bold text-center'>Welcome to MultiPlay</h1>
         <h1 className='text-sm text-muted font-bold text-center my-4'>Multiple YouTube Video Players</h1>
@@ -63,12 +65,14 @@ const removeAll = () => {
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mx-auto my-4'>
         {players.map(player => (
-          <YouTubePlayer
-            key={player.id}
-            id={player.id}
-            videoId={player.videoId}
-            onRemove={removePlayer}
-          />
+          <Suspense key={player.id} fallback={<SuspensePlayer/>}>
+            <YouTubePlayer
+              key={player.id}
+              id={player.id}
+              videoId={player.videoId}
+              onRemove={removePlayer}
+            />
+          </Suspense>
         ))}
       </div>
       <p className='absolute bottom-4 left-6 text-base text-muted'>Created By <a href="https://github.com/Shubhjn4357" target="_blank" rel="noopener noreferrer">ShubhJain ❤️</a></p>
