@@ -1,11 +1,6 @@
-// pages/api/proxy.js
-import { createProxyMiddleware } from 'http-proxy-middleware';
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+import { createProxyMiddleware } from 'http-proxy-middleware';
+import { NextResponse } from 'next/server';
 
 const proxy = createProxyMiddleware({
   target: 'https://www.youtube.com',
