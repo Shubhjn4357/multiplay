@@ -23,7 +23,7 @@ const YouTubePlayer = ({ videoId, onRemove, id }) => {
           onReady: onPlayerReady,
           onStateChange: onPlayerStateChange,
         },
-        host: 'http://multiplay.vercel.app/api/proxy',
+        host: 'https://multiplay-blue.vercel.app/api/proxy',
       });
     };
 
