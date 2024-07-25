@@ -8,6 +8,7 @@ const proxy = createProxyMiddleware({
   pathRewrite: {
     '^/api/proxy': '', // Adjust if needed
   },
+  selfHandleResponse: true, // Ensure the proxy middleware does not automatically handle the response
 });
 
 export function middleware(req) {
@@ -29,6 +30,12 @@ export function middleware(req) {
         end: (body) => {
           resolve(
             new NextResponse(body)
+          );
+        },
+        write: (chunk) => {
+          // This can be used to handle streaming responses
+          resolve(
+            new NextResponse(chunk)
           );
         },
       };
