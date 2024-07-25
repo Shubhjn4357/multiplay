@@ -29,10 +29,15 @@ const YouTubePlayerManager = () => {
       alert('Invalid YouTube URL or multiplier');
     }
   };
+const removeAll = () => {
+    setPlayers([]);
+    setUrl('');
+    setMultiplyer('1');
+  };
 
   return (
-    <div className='p-4 ring ring-stone-700 rounded-md'>
-      <div className='bg-white/10 backdrop-blur-lg rounded-md p-4 my-4'>
+    <div className='p-4 ring ring-stone-700 rounded-md size-full overflow-y-scroll'>
+      <div className='bg-white/10 backdrop-blur-lg rounded-md p-4 my-4 sticky top-2 inset-x-0 z-10'>
         <h1 className='text-2xl font-bold text-center'>Welcome to MultiPlay</h1>
         <h1 className='text-sm text-muted font-bold text-center my-4'>Multiple YouTube Video Players</h1>
         <div className="flex gap-2">
@@ -41,7 +46,7 @@ const YouTubePlayerManager = () => {
             value={url}
             className='input text-center text-black outline-none rounded-md w-full p-2'
             onChange={(e) => setUrl(e.target.value)}
-            placeholder="Enter YouTube Video URL"
+            placeholder="Paste YouTube Video URL"
           />
           <input
             type="number"
@@ -51,7 +56,10 @@ const YouTubePlayerManager = () => {
             placeholder="Enter Multiplier"
           />
         </div>
-        <button className='bg-blue-500 text-white font-bold py-2 px-4 w-full my-2 rounded-md' onClick={addMultiPlayer}>Play Video</button>
+        <div className='flex gap-2 my-4'>
+          <button className='bg-blue-500 text-white font-bold py-2 px-4 w-full my-2 rounded-md' onClick={addMultiPlayer}>Play Video</button>
+          <button className='bg-red-500 text-white font-bold py-2 px-4 w-full my-2 rounded-md' onClick={removeAll}>Reset</button>
+        </div>
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mx-auto my-4'>
         {players.map(player => (
@@ -63,7 +71,7 @@ const YouTubePlayerManager = () => {
           />
         ))}
       </div>
-      <p>Created By <a href="https://github.com/Shubhjn4357" target="_blank" rel="noopener noreferrer">ShubhJain ❤️</a></p>
+      <p className='absolute bottom-4 left-6 text-base text-muted'>Created By <a href="https://github.com/Shubhjn4357" target="_blank" rel="noopener noreferrer">ShubhJain ❤️</a></p>
     </div>
   );
 };
