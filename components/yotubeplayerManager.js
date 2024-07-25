@@ -32,8 +32,8 @@ const YouTubePlayerManager = () => {
 
   return (
     <div className='p-4 ring ring-stone-700 rounded-md'>
-      <div className='sticky top-2 bg-white/20 backdrop-blur-lg rounded-md p-4 my-4'>
-        <h1 className='text-2xl font-bold text-center'>Welcome to My Server Task</h1>
+      <div className='sticky top-2 bg-white/20 backdrop-blur-lg rounded-md p-4 my-4 z-50'>
+        <h1 className='text-2xl font-bold text-center'>Welcome to MultiPlay</h1>
         <h1 className='text-sm text-muted font-bold text-center my-4'>Multiple YouTube Video Players</h1>
         <div className="flex gap-2">
           <input
@@ -53,7 +53,7 @@ const YouTubePlayerManager = () => {
         </div>
         <button className='bg-blue-500 text-white font-bold py-2 px-4 w-full my-2 rounded-md' onClick={addMultiPlayer}>Play Video</button>
       </div>
-      <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mx-auto my-4'>
         {players.map(player => (
           <YouTubePlayer
             key={player.id}
@@ -63,6 +63,7 @@ const YouTubePlayerManager = () => {
           />
         ))}
       </div>
+      <p>Created By <a href="https://github.com/Shubhjn4357" target="_blank" rel="noopener noreferrer">ShubhJain ❤️</a></p>
     </div>
   );
 };
