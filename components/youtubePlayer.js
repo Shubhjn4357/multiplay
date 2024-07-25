@@ -1,12 +1,10 @@
-'use client'
-import { useEffect, useRef } from 'react';
+'use client';
+import { useEffect, useRef, useState } from 'react';
 
 const YouTubePlayer = ({ videoId, onRemove, id }) => {
   const playerRef = useRef(null);
-  useEffect(() => {
-    console.log('Initializing YouTube player with videoId:', videoId);
-    // ... rest of the code
-  }, [videoId]);
+  const [player, setPlayer] = useState(null);
+
   useEffect(() => {
     const onPlayerReady = (event) => {
       event.target.playVideo();
@@ -19,30 +17,37 @@ const YouTubePlayer = ({ videoId, onRemove, id }) => {
     };
 
     const createPlayer = () => {
-      new window.YT.Player(playerRef.current, {
+      setPlayer(new window.YT.Player(playerRef.current, {
         videoId,
         events: {
           onReady: onPlayerReady,
           onStateChange: onPlayerStateChange,
         },
-        playerVars: {
-          host: 'https://multiplay-blue.vercel.app/api/proxy',
-        },
-      });
+      }));
     };
 
+    // Load the IFrame API if it hasn't been loaded already
     if (!window.YT) {
       const tag = document.createElement('script');
       tag.src = 'https://www.youtube.com/iframe_api';
       const firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-      tag.onload = () => {
-        window.YT.ready(createPlayer);
+      // Initialize the player when the API is ready
+      window.onYouTubeIframeAPIReady = () => {
+        createPlayer();
       };
     } else {
+      // If API is already loaded, create the player immediately
       createPlayer();
     }
+
+    // Clean up player on component unmount
+    return () => {
+      if (player) {
+        player.destroy();
+      }
+    };
   }, [videoId]);
 
   return (
