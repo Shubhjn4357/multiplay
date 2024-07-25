@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Multiwatch: Play YouTube Videos with Multiple Players and Proxy Support
 
-## Getting Started
+This website, created by Shubh Jain, allows you to play any YouTube video with multiple players simultaneously, all within a proxy-enabled environment.
 
-First, run the development server:
+**Key Features:**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* **Multiple Players:** Watch your favorite YouTube videos in multiple players simultaneously, allowing you to customize your viewing experience.
+* **Proxy Support:** Enjoy seamless playback even when facing restrictions or limitations by leveraging the power of proxies.
+* **User-Friendly Interface:** Navigate the website effortlessly with its intuitive design and easy-to-use controls.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**How it Works:**
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Multiwatch utilizes a combination of technologies to achieve its unique functionality:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+* **YouTube API:** The website interacts with the official YouTube API to retrieve video information and playback options.
+* **Proxy Server:** A dedicated proxy server acts as an intermediary, bypassing potential restrictions and delivering smooth video streaming.
+* **Web Components:** Modern web components are employed to create the individual player instances and manage their interactions.
 
-## Learn More
+**Benefits:**
 
-To learn more about Next.js, take a look at the following resources:
+* **Enhanced Viewing Experience:** Enjoy a more immersive and engaging viewing experience with multiple players.
+* **Flexibility and Control:** Customize your playback settings and choose from various player configurations.
+* **Bypass Restrictions:** Access YouTube content even when facing geographical or network limitations.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Getting Started:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Visit the Multiwatch website: [GitHub Link](https://github.com/Shubhjn4357/muliwatch)
+2. Enter the URL of the YouTube video you want to watch.
+3. Select the desired number of players and playback options.
+4. Enjoy watching your video in multiple players!
 
-## Deploy on Vercel
+**Contributing:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Contributions to Multiwatch are welcome! If you have any ideas, bug reports, or feature requests, please feel free to open an issue or submit a pull request on the GitHub repository.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Contact:**
+
+If you have any questions, feedback, or suggestions, please reach out to: shubhamjain.com.in@gmail.com
+
+Thank you for using Multiwatch! Happy watching!
+
+

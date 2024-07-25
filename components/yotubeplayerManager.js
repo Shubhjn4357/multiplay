@@ -32,7 +32,7 @@ const YouTubePlayerManager = () => {
 
   return (
     <div className='p-4 ring ring-stone-700 rounded-md'>
-      <div className='sticky top-2 bg-white/20 backdrop-blur-lg rounded-md p-4 my-4 z-50'>
+      <div className='bg-white/10 backdrop-blur-lg rounded-md p-4 my-4'>
         <h1 className='text-2xl font-bold text-center'>Welcome to MultiPlay</h1>
         <h1 className='text-sm text-muted font-bold text-center my-4'>Multiple YouTube Video Players</h1>
         <div className="flex gap-2">

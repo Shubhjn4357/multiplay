@@ -13,7 +13,7 @@ export default function Home() {
   // }, []);
 
   return (
-    <div className='relative p-4 h-screen flex flex-col justify-center items-center'>    
+    <div className='relative p-4 h-screen overflow-y-scroll flex flex-col justify-center items-center'>    
           <YouTubePlayerManager />
     </div>
   );
