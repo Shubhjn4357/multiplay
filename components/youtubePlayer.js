@@ -11,14 +11,20 @@ const YouTubePlayer = ({ videoId, onRemove, id }) => {
     };
 
     const onPlayerStateChange = (event) => {
-      if (event.data === window.YT.PlayerState.ENDED) {
-        event.target.playVideo();
-      }
+      event.target.playVideo();
+      // if (event.data === window.YT.PlayerState.ENDED) {
+      //   event.target.playVideo();
+      // }
     };
 
     const createPlayer = () => {
       setPlayer(new window.YT.Player(playerRef.current, {
         videoId,
+        playerVars: {
+          'playsinline': 1,
+          'autoplay': 1, // Ensure autoplay parameter is set
+          'mute': 1      // Ensure video starts muted
+        },
         events: {
           onReady: onPlayerReady,
           onStateChange: onPlayerStateChange,
@@ -51,9 +57,9 @@ const YouTubePlayer = ({ videoId, onRemove, id }) => {
   }, [videoId]);
 
   return (
-    <div className='m-2 aspect-video w-full rounded-lg overflow-hidden'>
+    <div className='relative group m-2 aspect-video w-full rounded-lg overflow-hidden'>
       <div id={`player-${id}`} ref={playerRef} className='size-full' />
-      <button onClick={() => onRemove(id)}>Remove</button>
+      <button className="absolute top-0 right-0 bg-red-500 text-white font-bold p-1 px-2 size-6 text-xs rounded-full opacity-0 group-hover:opacity-100" onClick={() => onRemove(id)}>X</button>
     </div>
   );
 };

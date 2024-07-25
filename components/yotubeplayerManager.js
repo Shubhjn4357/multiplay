@@ -53,7 +53,7 @@ const YouTubePlayerManager = () => {
         </div>
         <button className='bg-blue-500 text-white font-bold py-2 px-4 w-full my-2 rounded-md' onClick={addMultiPlayer}>Play Video</button>
       </div>
-      <div className='grid grid-cols-4 gap-4'>
+      <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
         {players.map(player => (
           <YouTubePlayer
             key={player.id}
