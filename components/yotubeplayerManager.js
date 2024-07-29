@@ -2,7 +2,7 @@
 import { Suspense, useState } from 'react';
 import YouTubePlayer from './youtubePlayer';
 import SuspensePlayer from './suspensePlayer';
-
+import DownloadFile from './downloadFile';
 
 const extractVideoId = (url) => {
   const match = url.match(/(?:https?:\/\/)?(?:www\.)?youtube\.com\/(?:watch\?v=|embed\/|v\/|.+\/)?([a-zA-Z0-9_-]{11})|(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]{11})/);
@@ -13,13 +13,15 @@ const YouTubePlayerManager = () => {
   const [players, setPlayers] = useState([]);
   const [url, setUrl] = useState('');
   const [multiplyer, setMultiplyer] = useState('1');
+  const [download, setDownload] = useState('');
   const randomId = () => Math.floor(Math.random() * 1000000);
-
+  
   const removePlayer = (id) => {
     setPlayers(players.filter(player => player.id !== id));
   };
 
   const addMultiPlayer = () => {
+    setDownload('');
     const videoId = extractVideoId(url);
     const newPlayers = [];
     if (videoId && !isNaN(parseInt(multiplyer)) && parseInt(multiplyer) > 0) {
@@ -36,10 +38,21 @@ const removeAll = () => {
     setUrl('');
     setMultiplyer('1');
   };
-
+const downloadVideo=()=>{
+  setPlayers([]);
+  setMultiplyer('1');
+  const videoId = extractVideoId(url);
+  if(!videoId){
+    alert('Invalid YouTube URL');
+    return;
+  }
+  else{
+    setDownload(videoId)
+  }
+}
   return (
     <div className='p-4 ring ring-stone-700 rounded-md size-full scroll'>
-      <div className='bg-white/10 backdrop-blur-lg rounded-md p-4 my-4 sticky top-2 inset-x-0 z-10'>
+      <div className='bg-white/10 backdrop-blur-lg rounded-md p-4 my-4'>
         <h1 className='text-2xl font-bold text-center'>Welcome to MultiPlay</h1>
         <h1 className='text-sm text-muted font-bold text-center my-4'>Multiple YouTube Video Players</h1>
         <div className="flex gap-2">
@@ -58,11 +71,13 @@ const removeAll = () => {
             placeholder="Enter Multiplier"
           />
         </div>
-        <div className='flex gap-2 my-4'>
-          <button className='bg-blue-500 text-white font-bold py-2 px-4 w-full my-2 rounded-md' onClick={addMultiPlayer}>Play Video</button>
-          <button className='bg-red-500 text-white font-bold py-2 px-4 w-full my-2 rounded-md' onClick={removeAll}>Reset</button>
+        <div className='flex gap-2 flex-wrap my-4 mx-auto justify-center'>
+          <button className='bg-blue-500 text-white font-bold py-2 px-4 w-full max-w-xs my-2 rounded-md' onClick={addMultiPlayer}>Play Video</button>
+          <button className='bg-red-500 text-white font-bold py-2 px-4 w-full max-w-xs my-2 rounded-md' onClick={removeAll}>Reset</button>
+          <button className='bg-green-500 text-white font-bold py-2 px-4 w-full  max-w-xs my-2 rounded-md' onClick={downloadVideo}>DownloadVideo</button>
         </div>
       </div>
+      {download && <DownloadFile videoId={download} onRemove={()=>(setDownload(""))}/>}
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mx-auto my-4'>
         {players.map(player => (
           <Suspense key={player.id} fallback={<SuspensePlayer/>}>

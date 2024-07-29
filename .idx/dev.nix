@@ -9,9 +9,15 @@
     pkgs.yarn
     pkgs.nodePackages.pnpm
     pkgs.bun
+    pkgs.python3
+    pkgs.python3Packages.pip
+    pkgs.yt-dlp
   ];
+  
   # Sets environment variables in the workspace
-  env = {};
+  env = {
+    PYTHONPATH = "${pkgs.python3.sitePackages}";
+  };
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
