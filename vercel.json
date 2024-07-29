@@ -5,12 +5,9 @@
       "use": "@vercel/node"
     }
   ],
-  "build": {
-    "env": {
-      "PYTHON_VERSION": "3.9"
-    }
+  "env": {
+    "PYTHON_VERSION": "3.9.6"
   },
-  "hooks": {
-    "build": "curl https://pyenv.run | bash && ~/.pyenv/bin/pyenv install 3.9.6 && ~/.pyenv/bin/pyenv global 3.9.6 && npm install"
-  }
+  "buildCommand": "./install-python.sh"
 }
+
