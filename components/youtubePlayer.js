@@ -10,12 +10,13 @@ const YouTubePlayer = ({ videoId, onRemove, id }) => {
   const createPlayer = useCallback(() => {
     const onPlayerReady = (event) => {
       setIsPlayerReady(true);
+      event.target.mute();
       event.target.playVideo();
     };
     const onPlayerStateChange = (event) => {
-      if (event.data === window.YT.PlayerState.PLAYING) {
-        setIsPlayerReady(true);
-        event.target.playVideo();
+      console.log("Player state changed to: ", event.data);
+      if (event.data === window.YT.PlayerState.ENDED) {
+        event.target.playVideo(); // Restart the video when it ends
       }
     };
 
