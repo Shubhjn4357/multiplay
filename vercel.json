@@ -5,9 +5,6 @@
       "use": "@vercel/node"
     }
   ],
-  "env": {
-    "PYTHON_VERSION": "3.9.6"
-  },
-  "buildCommand": "./install-python.sh"
+  "buildCommand": "./install-python.sh && npm install"
 }
 

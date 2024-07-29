@@ -16,5 +16,3 @@ pyenv global 3.9.6
 # Verify Python installation
 python --version
 
-# Continue with npm install
-npm install
