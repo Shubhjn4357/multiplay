@@ -12,8 +12,10 @@
     pkgs.python3
     pkgs.python3Packages.pip
     pkgs.yt-dlp
+    pkgs.pipenv
+    pkgs.docker
   ];
-  
+  services.docker.enable = true;
   # Sets environment variables in the workspace
   env = {
     PYTHONPATH = "${pkgs.python3.sitePackages}";

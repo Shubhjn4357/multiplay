@@ -7,7 +7,7 @@ export const metadata = {
   title: "MultiPlay",
   description: "MultiPlay Play And Increase Multiple WatchTime On Youtube with Proxy Enabled ",
   verification:{
-    "google-site-verification":"-TEIWxgPOtkzurwky9ujly-Sw0U3MhV944fKwey-pzM"
+    "google-site-verification":"bZDeRwawe5fmMmr95BSzdsyEP1AQDOYyCRkg54EJ2eo"
   }
 };
 export default function RootLayout({ children }) {
